@@ -43,6 +43,7 @@ class QuotationController extends Controller
                 'is_primary' => $quotation->is_primary,
                 'status' => $quotation->status->value,
                 'status_tone' => $quotation->status->tone(),
+                'opportunity_id' => $quotation->opportunity_id,
                 'opportunity' => $quotation->opportunity?->name,
                 'account' => $quotation->opportunity?->account?->name,
                 'pricebook' => $quotation->pricebook?->name,

@@ -65,7 +65,18 @@ export default function Show({ quotation, can }) {
                                 {quotation.quote_number}
                             </h1>
                             <p className="text-sm text-slate-500">
-                                {quotation.opportunity?.name ?? 'No opportunity'} · {quotation.opportunity?.account ?? '—'}
+                                {quotation.opportunity ? (
+                                    <Link
+                                        href={`/opportunities/${quotation.opportunity.id}`}
+                                        className="font-medium text-brand-700 hover:underline"
+                                    >
+                                        {quotation.opportunity.name}
+                                    </Link>
+                                ) : (
+                                    'No opportunity'
+                                )}
+                                {' · '}
+                                {quotation.opportunity?.account ?? '—'}
                             </p>
                         </div>
 
@@ -109,6 +120,21 @@ export default function Show({ quotation, can }) {
                     </div>
 
                     <dl className="grid grid-cols-2 gap-4 border-t border-slate-200 bg-slate-50/60 px-4 py-3 sm:grid-cols-4 sm:px-6">
+                        <div>
+                            <dt className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Opportunity</dt>
+                            <dd className="mt-0.5 text-sm font-medium text-slate-900">
+                                {quotation.opportunity ? (
+                                    <Link
+                                        href={`/opportunities/${quotation.opportunity.id}`}
+                                        className="text-brand-700 hover:underline"
+                                    >
+                                        {quotation.opportunity.name}
+                                    </Link>
+                                ) : (
+                                    '—'
+                                )}
+                            </dd>
+                        </div>
                         <div>
                             <dt className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Pricebook</dt>
                             <dd className="mt-0.5 text-sm font-medium text-slate-900">{quotation.pricebook ?? '—'}</dd>

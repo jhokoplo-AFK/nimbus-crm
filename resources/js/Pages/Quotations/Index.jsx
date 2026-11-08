@@ -35,7 +35,16 @@ export default function Index({ quotations, filters, statuses = [] }) {
             header: 'Opportunity',
             render: (quotation) => (
                 <div className="min-w-0">
-                    <p className="truncate text-sm text-slate-800">{quotation.opportunity ?? '—'}</p>
+                    {quotation.opportunity_id ? (
+                        <Link
+                            href={`/opportunities/${quotation.opportunity_id}`}
+                            className="block truncate text-sm font-medium text-brand-700 hover:underline"
+                        >
+                            {quotation.opportunity ?? `Opportunity #${quotation.opportunity_id}`}
+                        </Link>
+                    ) : (
+                        <p className="truncate text-sm text-slate-800">—</p>
+                    )}
                     <p className="truncate text-xs text-slate-500">{quotation.account ?? '—'}</p>
                 </div>
             ),
